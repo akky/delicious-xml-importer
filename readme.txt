@@ -1,20 +1,20 @@
 === Delicious XML Importer ===
-Contributors: sillybean
+Contributors: sillybean, akky
 Tags: delicious, links, bookmarks, import
 Donate Link: http://sillybean.net/code/wordpress/delicious/
-Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 0.4
+Requires at least: 4.0
+Tested up to: 4.9.8
+Stable tag: 0.5
 
 Lets you import your Delicious bookmarks into WordPress as links, posts, or a custom post type.
 
 == Description ==
 
+This is a modified version by @akky for PHP 7.x (PHP 7.2 I am using).
+
 = Notes =
 
-On the import screen, there's a link to <a href="https://api.del.icio.us/v1/posts/all?meta=yes">the Delicious API page</a> that exports all your bookmarks (including the private ones) to an XML file. Do not right click and press "save;" you will need to log in using your Delicious username and password first. Once the XML appears, you can save the file to your desktop. (Some browsers, like Safari, will show you a blank page. View source to make sure the XML is there.)
-
-You can get all the links saved since your last import by using the <a href="http://www.delicious.com/help/api#posts_all"><kbd>&fromdt</kbd> argument</a>. There are several other arguments you can use.
+Delicious API seems to stop, could be for years now(2018). You may still log in the service and <a href="https://del.icio.us/export">export your bookmarks</a>, however the exported format is html. You need to convert exported html to xml format first to go on.
 
 You will have the option to import your bookmarks as links, with your Delicious tags becoming link categories, or as posts. Note that the WordPress link manager does not break up long lists into pages, the way the post and page managers do. If you have a lot of Delicious bookmarks, your link manager could become very, very slow after importing. You might be better off importing your bookmarks as posts, at least until WP's link manager screen gets updated.
 
