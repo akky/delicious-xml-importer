@@ -187,7 +187,6 @@ class Delicious_Import extends WP_Importer {
     function import_posts() {
         echo '<ol>';
         $categoriestags = $_POST['categoriestags'];
-        $cat_id = $_POST['cat_id'];
         $postmeta = $_POST['custom_field'];
         $fieldname = $_POST['custom_field_name'];
         foreach ($this->posts as $post) {
