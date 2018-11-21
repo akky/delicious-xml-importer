@@ -35,7 +35,6 @@ class Delicious_Import extends WP_Importer {
 
     function header() {
         echo '<div class="wrap">';
-        screen_icon();
         echo '<h2>'.__('Import Delicious XML', 'delicious-xml-importer').'</h2>';
     }
 
