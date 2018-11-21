@@ -12,12 +12,6 @@ Stable tag: 0.4
 if ( !defined('WP_LOAD_IMPORTERS') )
     return;
 
-if (!function_exists('set_magic_quotes_runtime')) {
-    function set_magic_quotes_runtime($new_setting) {
-        return true;
-    }
-}
-
 // Load Importer API
 require_once ABSPATH . 'wp-admin/includes/import.php';
 
@@ -97,8 +91,6 @@ class Delicious_Import extends WP_Importer {
     }
 
     function get_posts($post_type = 'post') {
-        global $wpdb;
-        set_magic_quotes_runtime(0);
         $datalines = file($this->file); // Read the file into an array
         $importdata = implode('', $datalines); // squish it
         $importdata = str_replace(array ("\r\n", "\r"), "\n", $importdata);
@@ -141,8 +133,6 @@ class Delicious_Import extends WP_Importer {
     }
     
     function get_links() {
-        global $wpdb;
-        set_magic_quotes_runtime(0);
         $datalines = file($this->file); // Read the file into an array
         $importdata = implode('', $datalines); // squish it
         $importdata = str_replace(array ("\r\n", "\r"), "\n", $importdata);
