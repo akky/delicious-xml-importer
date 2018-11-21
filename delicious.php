@@ -124,7 +124,7 @@ class Delicious_Import extends WP_Importer {
                 $post_content = '';
             else {
                 $post_content = esc_sql($this->unhtmlentities(trim($post_content)));
-                $post_content = preg_replace_callback('|<(/?[A-Z]+)|', create_function('$match', 'return "<" . strtolower($match[1]);'), $post_content);
+                $post_content = preg_replace_callback('|<(/?[A-Z]+)|', function($match){ return "<" . strtolower($match[1]);}, $post_content);
                 $post_content = str_replace('<br>', '<br />', $post_content);
                 $post_content = str_replace('<hr>', '<hr />', $post_content);
             }
@@ -181,7 +181,7 @@ class Delicious_Import extends WP_Importer {
                 $link_notes = '';
             else {
                 $link_notes = esc_sql($this->unhtmlentities(trim($link_notes)));
-                $link_notes = preg_replace_callback('|<(/?[A-Z]+)|', create_function('$match', 'return "<" . strtolower($match[1]);'), $link_notes);
+                $link_notes = preg_replace_callback('|<(/?[A-Z]+)|', function($match){ return "<" . strtolower($match[1]);}, $link_notes);
                 $link_notes = str_replace('<br>', '<br />', $link_notes);
                 $link_notes = str_replace('<hr>', '<hr />', $link_notes);
             }
