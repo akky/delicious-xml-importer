@@ -116,21 +116,21 @@ class Delicious_Import extends WP_Importer {
             $categories = explode(" ", $category);
             $cat_index = 0;
             foreach ($categories as $category) {
-                $categories[$cat_index] = $wpdb->escape($this->unhtmlentities($category));
+                $categories[$cat_index] = esc_sql($this->unhtmlentities($category));
                 $cat_index++;
             }
             $post_content = $post['extended'];
             if ($post_content == 'empty')
                 $post_content = '';
             else {
-                $post_content = $wpdb->escape($this->unhtmlentities(trim($post_content)));
+                $post_content = esc_sql($this->unhtmlentities(trim($post_content)));
                 $post_content = preg_replace_callback('|<(/?[A-Z]+)|', create_function('$match', 'return "<" . strtolower($match[1]);'), $post_content);
                 $post_content = str_replace('<br>', '<br />', $post_content);
                 $post_content = str_replace('<hr>', '<hr />', $post_content);
             }
 
             $post_link = $post['href'];
-            $post_link = $wpdb->escape($this->unhtmlentities(trim($post_link)));
+            $post_link = esc_sql($this->unhtmlentities(trim($post_link)));
             
             $post_author = 1;
             if ($post['shared'] == 'no') $post_status = 'private';
@@ -163,7 +163,7 @@ class Delicious_Import extends WP_Importer {
             $link_category = explode(" ", $category);
             $cat_index = 0;
             foreach ($link_category as $category) {
-                $cat_name = $wpdb->escape($this->unhtmlentities($category));
+                $cat_name = esc_sql($this->unhtmlentities($category));
                 $slug = sanitize_title($cat_name);
                 $link_id = term_exists($slug, 'link_category');
                 if (!$link_id) {
@@ -180,14 +180,14 @@ class Delicious_Import extends WP_Importer {
             if ($link_notes == 'empty')
                 $link_notes = '';
             else {
-                $link_notes = $wpdb->escape($this->unhtmlentities(trim($link_notes)));
+                $link_notes = esc_sql($this->unhtmlentities(trim($link_notes)));
                 $link_notes = preg_replace_callback('|<(/?[A-Z]+)|', create_function('$match', 'return "<" . strtolower($match[1]);'), $link_notes);
                 $link_notes = str_replace('<br>', '<br />', $link_notes);
                 $link_notes = str_replace('<hr>', '<hr />', $link_notes);
             }
 
             $link_url = $post['href'];
-            $link_url = $wpdb->escape($this->unhtmlentities(trim($link_url)));
+            $link_url = esc_sql($this->unhtmlentities(trim($link_url)));
 
             $this->posts[$index] = compact('link_url', 'link_name', 'link_updated', 'link_notes', 'link_visible', 'link_category');
             $index++;
